@@ -9,6 +9,7 @@ class File{
     console.log('this', this);
     console.log('arguments', arguments);
     console.log('arguments', Array.prototype.slice.call(arguments));
+    console.log('arguments', Array.from(arguments));
     this.showContent(fileName);
   }
 
@@ -19,11 +20,17 @@ class File{
 
 const file = new File();
 
+const q = Array.from({0: 'test1', 1: 'test2', length: 2});
+const r = Array.from({0: 'test1', 1: 'test2'});
 const t = Array.prototype.slice.call({0: 'test1', 1: 'test2', length: 2});
 const s = Array.prototype.slice.call({0: 'test1', 1: 'test2'});
 
+console.log(q, Array.isArray(q));
+console.log(r, Array.isArray(r));
 console.log(t, Array.isArray(t));
 console.log(s, Array.isArray(s));
+
+
 
 //this will fail because watch is being called twice
 //watch(__filename, file.watch);
@@ -34,7 +41,7 @@ console.log(s, Array.isArray(s));
 
 //IT IS POSSIBLE TO DEFINE THE CONTEXT OF THE FUNCTION
 //this bind is actually forcing the context to be the one inside the bind function
-watch(__filename, file.watch.bind(file));
+//watch(__filename, file.watch.bind(file));
 
 
 //another way to fix it
