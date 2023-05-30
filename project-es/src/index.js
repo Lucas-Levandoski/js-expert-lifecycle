@@ -5,7 +5,11 @@ import readline from 'readline';
 
 import database from '../database.json' assert { type: 'json' };
 
+import { Person } from './person.js';
+
 Draftlog(console).addLineListener(process.stdin);
+
+
 
 const options = {
   leftPad: 2,
@@ -18,7 +22,7 @@ const options = {
   ]
 }
 ;
-const table = chalkTable(options, database);
+const table = chalkTable(options, database.map(item => new Person(item).formatted('pt')));
 const print = console.draft(table);
 
 const terminal = readline.createInterface({
