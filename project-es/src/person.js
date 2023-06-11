@@ -27,4 +27,16 @@ export class Person {
         .format(to)
     }
   }
+
+  static generateInstanceFromString(instance) {
+    const [ id, vehicles, kmTraveled, from, to ] = instance.split(' ');
+
+    return new Person({
+      id,
+      kmTraveled,
+      from,
+      to,
+      vehicles: vehicles.split(',')
+    })
+  }
 }
